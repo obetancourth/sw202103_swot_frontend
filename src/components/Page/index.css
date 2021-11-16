@@ -1,0 +1,21 @@
+.page {
+  flex:1;
+  display: flex;
+}
+
+.page-center {
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.with_header {
+  min-height:calc(100vh - 64px);
+}
+
+.with_navbar {
+  min-height:calc(100vh - 64px);
+}
+.with_header.with_navbar{
+  min-height:calc(100vh - 128px);
+}
