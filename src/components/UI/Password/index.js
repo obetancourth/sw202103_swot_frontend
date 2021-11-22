@@ -1,29 +1,27 @@
 import Base from "../Base";
 
-const TextBox = (
+const Password = (
   {
     label,
     onChange,
     placeholder,
     value,
     className,
-    name,
-    ...elseProps
+    name
   }
 )=>{
   return (
     <Base
-      type="text"
+      type="password"
       onChange={onChange}
       placeholder={placeholder}
       value={value}
       label={label}
       className = {["textbox", className].join(" ")}
       name={name}
-      {...elseProps}
     >
     </Base>
   );
 }
 
-export default TextBox;
+export default Password;
