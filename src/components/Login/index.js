@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { publicAxios } from '../../store/utils/Axios';
+
 import Page from '../Page';
 import TextBox from '../UI/TextBox';
 import Password from '../UI/Password';
@@ -29,18 +31,47 @@ const Login = ()=>{
 
   const security = useSelector(getSecurity);
   const dispatch = useDispatch();
-  console.log(security);
 
   const onBtnClick =  (e)=> {
     e.preventDefault();
     e.stopPropagation();
-    console.log("click");
     dispatch(
       {
-        type:"SEC_NEW_ATTEMPT",
+        type:"SEC_LOGIN_FETCH",
         payload: null,
       }
     );
+    publicAxios.post(
+      '/api/sec/login',
+      {
+        email: txtCorreo,
+        pswd: txtPassword,
+      }
+    )
+    .then(
+      (data) => {
+        console.log(data)
+        dispatch(
+          {
+            type: "SEC_LOGIN_SUCCESS",
+            payload: data,
+          }
+        );
+      }
+    )
+    .catch(
+      (err)=>{
+        console.log(err);
+        dispatch(
+          {
+            type: "SEC_LOGIN_ERROR",
+            payload: err,
+          }
+        );
+      }
+    );
+
+
   };
   const onChangeHandler = (e)=>{
     e.preventDefault();
