@@ -5,6 +5,8 @@ import { publicAxios } from '../../store/utils/Axios';
 import Page from '../Page';
 import TextBox from '../UI/TextBox';
 import Password from '../UI/Password';
+import Content from '../UI/Content';
+import { PrimaryButton } from '../UI/Button';
 
 import { useSelector, useDispatch} from 'react-redux';
 
@@ -49,7 +51,7 @@ const Login = ()=>{
       }
     )
     .then(
-      (data) => {
+      ({data}) => {
         console.log(data)
         dispatch(
           {
@@ -82,10 +84,11 @@ const Login = ()=>{
       setTxtPassword(e.target.value);
     }
   }
+  const { hasErrors } = security;
 
   return (
     <Page showHeader={true} title="Iniciar Sesión" showNavBar>
-      <section>
+      <Content>
         <TextBox
           label="Correo Electrónico"
           value={txtCorreo}
@@ -103,11 +106,18 @@ const Login = ()=>{
           onChange={onChangeHandler}
           name="txtPassword"
         />
-        <div>
-          <button onClick={onBtnClick}>Iniciar Sesión </button>
-          {JSON.stringify(security)}
+        <div style={{width:"100%", padding:'0.5em', marginTop:'1em'}}>
+          <PrimaryButton onClick={onBtnClick}>Iniciar Sesión </PrimaryButton>
         </div>
-      </section>
+        {
+          (hasErrors && (
+            <div style={{ width: "100%", padding: '0.5em', marginTop: '1em', color:'#F00' }}>
+              No se pudo validar su Correo o Contraseña. Intente nuevamente.
+            </div>
+          ))
+        }
+
+      </Content>
     </Page>
   );
 }

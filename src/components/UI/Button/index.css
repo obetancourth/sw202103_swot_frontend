@@ -1,0 +1,18 @@
+button.btn{
+  display:block;
+  font-size: 1em;
+  padding:1em;
+  border: 1px solid var(--secondaryBgDColor);
+  font-weight: bold;
+  color: var(--secondaryTxColor);
+  width:100%;
+  background-color: var(--secondaryBgColor);
+  
+}
+button.btn.primary{
+  background-color: var(--primaryBgColor);
+}
+
+button.btn.secondary{
+  background-color: var(--secondaryBgDColor);
+}

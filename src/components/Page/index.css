@@ -1,6 +1,7 @@
 .page {
   flex:1;
   display: flex;
+  background-color: var(--secondaryBgColor);
 }
 
 .page-center {
@@ -18,4 +19,15 @@
 }
 .with_header.with_navbar{
   min-height:calc(100vh - 128px);
+}
+
+div.header{
+  background-color:var(--primaryBgColor);
+  color:var(--primaryTxColor);
+  min-height:64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
 }

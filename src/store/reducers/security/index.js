@@ -5,7 +5,7 @@ const initialState = {
   isLogged:false,
   user:{},
   isFetching: false,
-  loginErrors: [],
+  errors: [],
   hasErrors: false
 };
 
@@ -38,16 +38,39 @@ const securityReducer = (state = initialState, action) => {
         ...state,
         user: user,
         isLogged : true,
-        isFetching : false
+        isFetching : false,
+        hasErrors:false,
+        errors:[]
       }
     case "SEC_LOGIN_ERROR":
       return {
         ...state,
         isFetching:false,
         hasErrors:true,
-        loginErrors : payload,
+        errors : [payload],
         user:{},
         isLogged:false
+      }
+    case "SEC_SIGNIN_FETCH":
+      return {
+        ...state,
+        isFetching: true,
+        hasErrors: false,
+        errors:[]
+      }
+    case "SEC_SIGNIN_SUCCESS":
+      return {  
+        ...state,
+        isFetching: false,
+        hasErrors: false,
+        errors:[]
+      }
+    case "SEC_SIGNIN_ERROR":
+      return {
+        ...state,
+        isFetching: false,
+        hasErrors: true,
+        errors: [payload]
       }
     default:
       return state;

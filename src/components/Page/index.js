@@ -10,7 +10,7 @@ const Page = ({children, className, showHeader, showNavBar, title})=>{
   let navBar = null;
   if (showHeader) {
     classNames.push("with_header");
-    header = (<div style={{backgroundColor:"#000", color:"#FFF", minHeight:"64px"}}>{title}</div>);
+    header = (<div className="header">{title}</div>);
   }
   if (showNavBar) {
     classNames.push("with_navbar");

@@ -2,20 +2,29 @@ nav {
   box-sizing:border-box;
   min-height: 64px;
   display: flex;
-  background-color: #000;
+  background-color: var(--primaryBgColor);
 }
 nav ul {
   display:flex;
   flex:1;
   padding:0px;
   margin:0px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  list-style: none;
+}
+nav ul li{
+  width:100%;
 }
 nav ul a{
   text-decoration: none;
-  color:#fff;
+  color:var(--primaryTxDColor);
   font-weight: bold;
   text-align: center;
   flex:1;
+  padding:0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }

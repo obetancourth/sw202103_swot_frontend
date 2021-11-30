@@ -1,3 +1,4 @@
+import './index.css';
 const Base = (
   {
     type,
@@ -11,9 +12,10 @@ const Base = (
     ...elseProps
   }
 )=>{
+  const curatedClassName = ["Input", className].join(' ');
   const _onChange = onChange || function(e){return null;};
   return (
-    <div className={className}>
+    <div className={curatedClassName}>
       <label>{label}
         <input
           type={type}
