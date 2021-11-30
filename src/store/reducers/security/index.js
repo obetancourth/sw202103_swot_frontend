@@ -12,7 +12,7 @@ const initialState = {
 //setJWT on Init if found on localStorage
 setJWT(localStorage.getItem("jwt_token")|| "");
 initialState.user = JSON.parse(localStorage.getItem("user_data")) || {};
-if (initialState.user !== {}){
+if (initialState.user?.email && true){
   initialState.isLogged = true;
 }
 

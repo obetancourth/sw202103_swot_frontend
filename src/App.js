@@ -11,6 +11,9 @@ import Splash from "./components/Splash";
 import Login from "./components/Login";
 import SignIn from "./components/SignIn";
 import Dashboard from "./components/Dashboard";
+
+const Private = ({ children }) => <RequireAuth redirectTo="/login">{children}</RequireAuth>
+
 function App() {
   return (
     <Provider store={store}>
@@ -20,7 +23,7 @@ function App() {
             <Route path="/"       element={<Splash/>} />
             <Route path="/login"  element={<Login />} />
             <Route path="/signin" element={<SignIn />} />
-            <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
+            <Route path="/dashboard" element={<Private><Dashboard /></Private>}/>
           </Routes>
         </div>
       </BrowserRouter>

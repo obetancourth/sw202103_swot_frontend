@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom';
 import { publicAxios } from '../../store/utils/Axios';
 
 import Page from '../Page';
@@ -33,7 +33,7 @@ const Login = ()=>{
 
   const security = useSelector(getSecurity);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const onBtnClick =  (e)=> {
     e.preventDefault();
     e.stopPropagation();
@@ -59,6 +59,7 @@ const Login = ()=>{
             payload: data,
           }
         );
+        navigate('/dashboard',{replace:true});
       }
     )
     .catch(
