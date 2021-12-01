@@ -1,0 +1,10 @@
+.with_header .list{
+  height:calc(100vh - 64px);
+}
+
+.with_navbar .list{
+  height:calc(100vh - 64px);
+}
+.with_header.with_navbar .list{
+  height:calc(100vh - 128px);
+}
