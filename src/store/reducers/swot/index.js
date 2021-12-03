@@ -1,12 +1,13 @@
 const initialState = {
-  hasMore:false,
+  hasMore:true,
   items:[],
   fetching:false,
   hasErrors:false,
   errors:[],
   currentPage:0,
-  pageSize:10,
-  totalPages:0
+  pageSize:15,
+  totalPages:0,
+  totalDocs:0
 }
 
 const swotReducer = (state=initialState, action)=>{
@@ -20,7 +21,7 @@ const swotReducer = (state=initialState, action)=>{
         errors:[]
       }
     case "SWOT_FETCH_SUCCESS":
-      const totalPages = (Math.floor(payload.docsMatched / payload.itemsPerPage));
+      const totalPages = (Math.ceil(payload.docsMatched / payload.itemsPerPage));
       const hasMore = payload.page !== totalPages;
       return {
         ...state,
@@ -29,9 +30,12 @@ const swotReducer = (state=initialState, action)=>{
         errors:[],
         totalPages: totalPages,
         currentPage: payload.page,
-        items: [state.items, ...payload.documents],
+        items: [...state.items, ...payload.documents],
         hasMore: hasMore,
+        totalDocs: payload.docsMatched
       }
+    case "SWOT_LIST_CLEAR":
+      return{...initialState};
   default:
     return state;
   }

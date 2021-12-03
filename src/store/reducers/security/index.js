@@ -72,6 +72,12 @@ const securityReducer = (state = initialState, action) => {
         hasErrors: true,
         errors: [payload]
       }
+    case "SECURITY_UNAUTHORIZED":
+      localStorage.removeItem("jwt_token");
+      localStorage.removeItem("user_data");
+      return {
+        ...initialState
+      }
     default:
       return state;
   }

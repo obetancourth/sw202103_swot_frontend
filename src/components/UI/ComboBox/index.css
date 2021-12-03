@@ -1,0 +1,26 @@
+div.Input {
+  display: flex;
+  justify-content: stretch;
+  flex-wrap: wrap;
+  width:100%;
+}
+
+div.Input label {
+  display: block;
+  font-weight: bold;
+  width:100%;
+  padding:0.5em;
+  margin-top:0.5em;
+}
+
+div.Input select{
+  display: block;
+  flex:1;
+  padding:1em 0.5em;
+  font-size: 1rem;
+  border: 1px solid var(--secondaryBgLColor);
+  outline:none;
+  width:100%;
+  margin-top:0.5em;
+  background-color: var(--secondaryBgLColor);
+}

@@ -11,14 +11,16 @@ const SwotList = ()=>{
 
   const swot = useSelector(({swot})=>swot);
   const dispatch = useDispatch();
-  const {hasMore, items, currentPage, pageSize} = swot;
+  const {hasMore, items, currentPage, pageSize, totalDocs} = swot;
   const fetchMore = () => {
     console.log("Loading More");
-    fetchSwotData(dispatch, currentPage + 1, pageSize, "Item")
+    fetchSwotData(dispatch, currentPage + 1, pageSize)
   }
 
   useEffect(()=>{
-    fetchMore();
+    if (hasMore) {
+      fetchMore();
+    }
   }, []);
 
   const itemsUI = items.map((o,i)=>{

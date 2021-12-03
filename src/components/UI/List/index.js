@@ -9,7 +9,7 @@ export const List = ({id, dataLength, fetchMore, hasMore, loader, children}) => 
         next={fetchMore}
         hasMore={hasMore}
         loader={loader||(<div>Loading ... </div>)}
-        scrollableTarger={id}
+        scrollableTarget={id}
       >
         {children}
       </InfiniteScroll>
