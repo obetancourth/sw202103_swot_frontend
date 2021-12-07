@@ -9,7 +9,10 @@ import Content from '../UI/Content';
 import { PrimaryButton } from '../UI/Button';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { doSignIn } from '../../store/reducers/security/actions';
 
+import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
 const getSecurity = ({ security }) => security;
 const SignIn = () => {
 
@@ -18,45 +21,13 @@ const SignIn = () => {
 
   const security = useSelector(getSecurity);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onBtnClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(
-      {
-        type: "SEC_SIGNIN_FETCH",
-        payload: null,
-      }
-    );
-    publicAxios.post(
-      '/api/sec/signin',
-      {
-        email: txtCorreo,
-        pswd: txtPassword,
-      }
-    )
-      .then(
-        ({data}) => {
-          console.log(data)
-          dispatch(
-            {
-              type: "SEC_SIGNIN_SUCCESS"
-            }
-          );
-        }
-      )
-      .catch(
-        (err) => {
-          console.log(err);
-          dispatch(
-            {
-              type: "SEC_SIGNIN_ERROR",
-              payload: err,
-            }
-          );
-        }
-      );
 
+    doSignIn(dispatch, txtCorreo, txtPassword, navigate);
 
   };
   const onChangeHandler = (e) => {
@@ -70,7 +41,7 @@ const SignIn = () => {
   }
 
   return (
-    <Page showHeader={true} title="Crear Cuenta" showNavBar>
+    <Page title="Crear Cuenta" showHeader>
       <Content>
         <TextBox
           label="Correo Electrónico"
@@ -88,6 +59,9 @@ const SignIn = () => {
         />
         <div style={{ width: "100%", padding: '0.5em', marginTop: '1em' }}>
           <PrimaryButton onClick={onBtnClick}>Crear Cuenta</PrimaryButton>
+        </div>
+        <div style={{ width: "100%", padding: '0.5em', marginTop: '1em' }}>
+          <Link to="/login">Ya tengo cuenta</Link>
         </div>
       </Content>
     </Page>
